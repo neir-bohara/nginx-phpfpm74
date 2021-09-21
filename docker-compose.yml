@@ -1,0 +1,45 @@
+version: '3.3'
+services:
+
+  #nginx-php74 Service
+  nginx-php:
+    image: neir/php-fpm72new:latest
+    container_name: lara
+    restart: unless-stopped
+    tty: true
+    ports:
+     - '8888:80'
+    restart: always
+    networks:
+      - lara-network
+
+  #MySQL Service
+  revivedb:
+    image: mysql:5.7.22
+    container_name: laradb
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_USER: your_laravel_user
+      MYSQL_USER_PASSWORD: your_laravel_db_password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - laradb:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - lara-network
+
+#Docker Networks
+networks:
+  lara-network:
+    driver: bridge
+#Volumes
+volumes:
+  laradb:
+    driver: local
+
