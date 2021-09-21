@@ -10,7 +10,7 @@ systemctl enable docker
 
 curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
 chmod +x /usr/bin/docker-compose
-
+```
 
 # nginx-phpfpm74
 nginx and php-fpm74 with single container
@@ -36,7 +36,7 @@ $ cd /root/
 $ git clone https://github.com/neir-bohara/nginx-phpfpm74.git 
 $ cd nginx-phpfpm74
 $ docker-compose up -d
-
+```
 <br>
 
 # PHP Commands
